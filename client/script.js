@@ -1,0 +1,17 @@
+async function getExchangeRate() {
+    const fromCurrency = document.getElementById('fromCurrency').value;
+    const toCurrency = document.getElementById('toCurrency').value;
+
+    try {
+      const response = await fetch(`http://localhost:3005/exchange-rate?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById('result').innerText = `Exchange Rate: ${data['Realtime Currency Exchange Rate']['5. Exchange Rate']}`;
+      } else {
+        document.getElementById('result').innerText = `Error: ${data.error}`;
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }

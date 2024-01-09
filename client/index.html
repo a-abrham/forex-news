@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Currency Exchange Rate</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -12,40 +13,36 @@
   <form id="exchangeForm">
     <label for="fromCurrency">From Currency:</label>
     <select id="fromCurrency" name="fromCurrency">
-      <option value="USD">USD</option>
-      <option value="EUR">EUR</option>
-    </select>
-
-    <label for="toCurrency">To Currency:</label>
-    <select id="toCurrency" name="toCurrency">
-      <option value="JPY">JPY</option>
-      <option value="GBP">GBP</option>
-    </select>
-
+        <option value="USD">United States Dollar (USD)</option>
+        <option value="EUR">Euro (EUR)</option>
+        <option value="JPY">Japanese Yen (JPY)</option>
+        <option value="GBP">British Pound Sterling (GBP)</option>
+        <option value="AUD">Australian Dollar (AUD)</option>
+        <option value="CAD">Canadian Dollar (CAD)</option>
+        <option value="CHF">Swiss Franc (CHF)</option>
+        <option value="CNY">Chinese Yuan (CNY)</option>
+        <option value="SEK">Swedish Krona (SEK)</option>
+        <option value="NZD">New Zealand Dollar (NZD)</option>
+      </select>
+    
+      <label for="toCurrency">To Currency:</label>
+      <select id="toCurrency" name="toCurrency">
+        <option value="JPY">Japanese Yen (JPY)</option>
+        <option value="GBP">British Pound Sterling (GBP)</option>
+        <option value="USD">United States Dollar (USD)</option>
+        <option value="EUR">Euro (EUR)</option>
+        <option value="AUD">Australian Dollar (AUD)</option>
+        <option value="CAD">Canadian Dollar (CAD)</option>
+        <option value="CHF">Swiss Franc (CHF)</option>
+        <option value="CNY">Chinese Yuan (CNY)</option>
+        <option value="SEK">Swedish Krona (SEK)</option>
+        <option value="NZD">New Zealand Dollar (NZD)</option>
+      </select>
     <button type="button" onclick="getExchangeRate()">Get Exchange Rate</button>
   </form>
 
   <div id="result"></div>
 
-  <script>
-    async function getExchangeRate() {
-      const fromCurrency = document.getElementById('fromCurrency').value;
-      const toCurrency = document.getElementById('toCurrency').value;
-
-      try {
-        const response = await fetch(`http://localhost:3005/exchange-rate?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}`);
-        const data = await response.json();
-
-        if (response.ok) {
-          document.getElementById('result').innerText = `Exchange Rate: ${data['Realtime Currency Exchange Rate']['5. Exchange Rate']}`;
-        } else {
-          document.getElementById('result').innerText = `Error: ${data.error}`;
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-  </script>
-
+<script src="script.js"></script>
 </body>
 </html>
