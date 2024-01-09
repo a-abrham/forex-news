@@ -3,11 +3,14 @@ const axios = require('axios');
 
 const apiKey = process.env.ALPHAVANTAGE_API_KEY;
 if (!apiKey) {
-  console.error('Please set your Alpha Vantage API key in the .env file.');
+  console.error('NO API KEY.. set your Alpha Vantage API key in the .env file.');
   process.exit(1);
 }
 
-const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=${apiKey}`;
+const fromCurrency = process.argv[2] || 'USD';
+const toCurrency = process.argv[3] || 'JPY';
+
+const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${fromCurrency}&to_currency=${toCurrency}&apikey=${apiKey}`;
 
 axios.get(url, { headers: { 'User-Agent': 'axios' } })
   .then(response => {
